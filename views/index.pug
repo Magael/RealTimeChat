@@ -1,6 +1,14 @@
-
+extends layout 
+block content 
+    .login-panel 
+        img(src="")
+        include includes/login
+    .register-panel 
+        img(src="")
+        include includes/register
+        
 <!DOCTYPE html>
-<html lang="en">
+<!--<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +47,6 @@
                 <input class="form-control" id= "password_confirm" type="password" name="password_confirm" value="" placeholder="Password..." autocomplete="off" required>
             </div>
             <div class="button">
-                <!--<input type="hidden" name="token" value="">-->
                 <button class="submit" type="submit" name="submit">Register</button>
             </div>
         
@@ -57,7 +64,6 @@
                 <input class="input" type="password" name="password" value="" placeholder="Password..." autocomplete="off" required>
             </div>
             <div class="button">
-                <!--<input type="hidden" name="token" value="">-->
                 <button class="submit" type="submit" name="submit">Log in</button>
             </div>
         </form>
