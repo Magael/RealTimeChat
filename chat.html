@@ -11,10 +11,16 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
+      .users {width: 30%; min-height:200px; background-color: #ddd; float: left;}
+      .chat {width: 70%; min-height:200px;float: left; background-color: #002299;}
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
+    <div class="users">
+    </div>
+    <div class="chat">
+      <ul id="messages"></ul>
+    </div>
     <form id="form" action="">
       <input id="nameImp" autocomplete="off" placeholder="name" />
       <input id="input" autocomplete="off" />
