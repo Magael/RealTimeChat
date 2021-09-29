@@ -2,7 +2,7 @@ const util = require('util.promisify');
 const mysql = require('mysql');
 const { connect } = require('../app');
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
     host:'localhost',
     username:'root',
     password:'',
@@ -17,3 +17,6 @@ db.getConnection((err,connection)=>{
     return;
 });
 
+db.query = util(db.query);
+
+module.exports = db;

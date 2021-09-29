@@ -1,0 +1,11 @@
+form (action="/login" method="POST")
+    div (class="username")
+        label (class="username" for="username") Username:		
+                input (class="input" type="text" name="username" value="" placeholder="Username..." autocomplete="off" required autofocus)
+            
+    div (class="pwd")
+        label (for="password")Password :
+        input (class="input" type="password" name="password" value="" placeholder="Password..." autocomplete="off" required)
+         
+    div (class="button")
+                button (class="submit" type="submit" name="submit") Log in
