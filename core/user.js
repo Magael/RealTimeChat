@@ -9,7 +9,7 @@ User.prototype = {
         if (user) {
             var field = Number.isInteger(user) ? 'id' : 'username';
         }
-        let sql = 'SELECT * FROM users WHERE' + $ {field} '= ?';
+        let sql = 'SELECT * FROM users WHERE ' + field + '= ?';
 
         db.query(sql, user, (err, result) => {
             if (err) throw err
