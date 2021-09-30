@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //templates
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 
 //routers
 app.use('/', pageRouter);
