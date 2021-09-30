@@ -1,4 +1,7 @@
 node_modules
+<<<<<<< HEAD
+.DS_Store
+=======
 node_modules/.bin/acorn
 node_modules/.bin/acorn
 node_modules/.bin/acorn
@@ -7,3 +10,4 @@ node_modules/.bin/acorn
 node_modules/.bin/is-ci
 *.cmd
 node_modules/.bin/mime
+>>>>>>> 879e588490f9776fe6e308fffd4695744b19ac23
