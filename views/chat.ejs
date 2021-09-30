@@ -1,3 +1,4 @@
+
 <head>
     <title>Socket.IO chat</title>
     <style>
@@ -14,6 +15,16 @@
     </style>
   </head>
   <body>
+
+    <%- mixin message(opp, name)
+          if(opp)
+              <h1>Logged in as </h1>
+              span=username
+          else 
+              <h1>Welcome </h1>
+              span=username
+              %>
+
     <ul id="messages"></ul>
     <form id="form" action="">
       <input id="nameImp" autocomplete="off" placeholder="name" />

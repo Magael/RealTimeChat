@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const pageRouter = require('./routes/pages');
 const app = express();
@@ -18,6 +19,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 //templates
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+//session
+app.use(session({
+    secret:'RealTimeChat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60*1000*30
+    }
+}));
 
 //routers
 app.use('/', pageRouter);
