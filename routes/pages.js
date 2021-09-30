@@ -14,6 +14,11 @@ router.get('/home',(req, res, next)=>{
 res.send('You are at the Homepage!');
 });
 
+router.get('/chat',(req, res, next)=>{
+    // res.sendFile('/views/chat.html');
+    res.sendFile(__dirname + '/../views/chat.html');
+});
+
 // Post login data
 router.post('/login', (req, res, next)=>{
     user.login(req.body.username, req.body.password, (result)=>{
