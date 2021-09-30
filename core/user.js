@@ -12,6 +12,7 @@ User.prototype = {
         let sql = `SELECT * FROM users WHERE ${field} = ?`;
 
         db.query(sql, user, (err, result) => {
+            
             if (err) throw err
             callback(result);
         });
@@ -21,15 +22,10 @@ User.prototype = {
         let password = body.password;
         body.password = bcrypt.hashSync(password, 8);
 
-        let bind = [];
-
-        for (prop in body) {
-            bind.push(prop);
-        }
-
+    
         let sql = `INSERT INTO users (email, username, password) VALUES (?, ?, ?)`;
 
-        db.query(sql, bind, (err, lastId) => {
+        db.query(sql, Object.values(body), (err, lastId) => {
             if (err) throw err;
             callback(lastId);
         });
