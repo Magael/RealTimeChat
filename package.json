@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.13",
+    "pug": "^3.0.2",
+    "socket.io": "^4.2.0",
+    "util.promisify": "^1.1.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app"
@@ -17,14 +28,5 @@
   "bugs": {
     "url": "https://github.com/Magael/RealTimeChat/issues"
   },
-  "homepage": "https://github.com/Magael/RealTimeChat#readme",
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.13",
-    "pug": "^3.0.2",
-    "util.promisify": "^1.1.1"
-  }
+  "homepage": "https://github.com/Magael/RealTimeChat#readme"
 }

@@ -20,7 +20,7 @@ app.use('/', pageRouter);
 
 //errors: 404
 app.use((req, res, next)=>{
-    let err = new Error ('Page not found');
+    var err = new Error ('Page not found');
     err.status = 404;
     next(err);
 });

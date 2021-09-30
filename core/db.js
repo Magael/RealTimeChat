@@ -1,15 +1,15 @@
 const util = require('util.promisify');
 const mysql = require('mysql');
-const { connect } = require('../app');
+const {connect} = require('../app');
 
-const db = mysql.createPool({
+const Pool = mysql.createPool({
     host:'localhost',
     username:'root',
     password:'',
     database:'chat'
 });
 
-db.getConnection((err,connection)=>{
+Pool.getConnection((err,connection)=>{
     if (err)
         console.error('Something went wrong connecting to the database...');
     if(connection)
@@ -17,6 +17,6 @@ db.getConnection((err,connection)=>{
     return;
 });
 
-db.query = util(db.query);
+Pool.query = util(Pool.query);
 
-module.exports = db;
+module.exports = Pool;

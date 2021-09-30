@@ -9,7 +9,7 @@ User.prototype = {
         if (user) {
             var field = Number.isInteger(user) ? 'id' : 'username';
         }
-        let sql = 'SELECT * FROM users WHERE' + $ {field} '= ?';
+        let sql = `SELECT * FROM users WHERE ${field} = ?`;
 
         db.query(sql, user, (err, result) => {
             if (err) throw err
@@ -27,7 +27,7 @@ User.prototype = {
             bind.push(prop);
         }
 
-        let sql = 'INSERT INTO users (email, username, password) VALUES (?, ?, ?)';
+        let sql = `INSERT INTO users (email, username, password) VALUES (?, ?, ?)`;
 
         db.query(sql, bind, (err, lastId) => {
             if (err) throw err;
@@ -47,6 +47,5 @@ User.prototype = {
         });
 
     }
-};
-
+}
 module.exports = User;
