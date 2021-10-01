@@ -3,6 +3,7 @@ const session = require('express-session');
 const path = require('path');
 const pageRouter = require('./routes/pages');
 const app = express();
+const PORT = 5050 || process.env.PORT;
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
@@ -46,24 +47,26 @@ app.use((err,req, res, next)=>{
     res.send(err.message);
 })
 
-
-//setting server
-app.listen(5050, ()=>{
-    console.log('Server running on port 5050');
+io.on('connection', (socket) => {
+  socket.on('chat message', (msg) => {
+    socket.broadcast.emit(msg);
+    io.emit('chat message', msg);
+    console.log('message: ' + msg.text);
+  });
 });
 
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      socket.broadcast.emit(msg);
-      io.emit('chat message', msg);
-      console.log('message: ' + msg.text);
-    });
-  });
-  
-  
-  // io.on('connection', (socket) => {
-    // socket.broadcast.emit('hi');
-  // });
+
+// io.on('connection', (socket) => {
+  // socket.broadcast.emit('hi');
+// });
+
+
+//setting server
+app.listen(PORT, ()=>{
+    console.log(`Server running on port ${PORT}`);
+});
+
+
 
 module.exports = app;
 
