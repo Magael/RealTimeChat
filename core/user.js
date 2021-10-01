@@ -1,9 +1,9 @@
 const db = require('./db');
 const bcrypt = require('bcrypt');
 
-function User() { };
+//function User() {};
 
-User.prototype = {
+const User = {
     //find user data by Id or username
     find: (user = null, callback) => {
         if (user) {
@@ -32,9 +32,10 @@ User.prototype = {
     },
 
     login: (username, password, callback) => {
-        this.find(username, (result) => {
+        User.find(username, (result) => {
             if (result) {
-                if (bcrypt.compareSync(password, result.password)) {
+                
+                if (bcrypt.compareSync(password, result[0].password)) {
                     callback(result);
                     return;
                 }

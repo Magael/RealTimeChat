@@ -1,8 +1,8 @@
 const express = require('express');
-const User = require('../core/user');
+const user = require('../core/user');
 const router = express.Router();
 
-const user = new User();
+
 
 //call index
 router.get('/', (req, res, next) => {
@@ -34,7 +34,7 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
 
-            res.redirect('index');
+            res.redirect('chat');
         } else {
             res.send('Username/Password incorrect!');
         }
