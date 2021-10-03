@@ -7,6 +7,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+
 // used by body-parser
 app.use(express.urlencoded({extended : false}));
 
@@ -37,17 +38,30 @@ app.use((err,req, res, next)=>{
 
 
 //setting server
-app.listen(5050, ()=>{
-    console.log('Server running on port 5050');
-});
 
-io.on('connection', (socket) => {
+
+/*io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
       socket.broadcast.emit(msg);
       io.emit('chat message', msg);
       console.log('message: ' + msg.text);
     });
-  });
+  });*/
+
+  io.on('connection',function(socket){
+    console.log('a user is connected');
+    socket.on('disconnect',function(){
+        console.log('a user is disconnected')
+    })
+    socket.on('chat message',function(msg){
+        console.log('message reçu : ' + msg);
+        io.emit('chat message',msg);
+    })
+})
+
+app.listen(5050, ()=>{
+    console.log('Server running on port 5050');
+});
   
   
   // io.on('connection', (socket) => {

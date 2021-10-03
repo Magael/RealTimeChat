@@ -11,6 +11,11 @@ router.get('/home',(req, res, next)=>{
 res.send('You are at the Homepage!');
 });
 
+//Get chat page 
+router.get('/chat',(req,res) => {
+    res.render('chat.ejs') 
+})
+
 // Post login data
 router.post('/login', (req, res, next)=>{
     res.json(req.body);
@@ -20,5 +25,7 @@ router.post('/login', (req, res, next)=>{
 router.post('/register', (req, res, next)=>{
     res.json(req.body);
 })
+
+
 
 module.exports = router;
