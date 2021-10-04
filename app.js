@@ -1,7 +1,9 @@
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const pageRouter = require('./routes/pages');
 const app = express();
+const PORT = 5050 || process.env.PORT;
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
@@ -20,6 +22,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//session
+app.use(session({
+    secret:'RealTimeChat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60*1000*30
+    }
+}));
+
 //routers
 app.use('/', pageRouter);
 
@@ -34,11 +46,11 @@ app.use((req, res, next)=>{
 app.use((err,req, res, next)=>{
     res.status(err.status || 500);
     res.send(err.message);
-})
+});
+
 
 
 //setting server
-
 
 /*io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
@@ -57,16 +69,13 @@ app.use((err,req, res, next)=>{
         console.log('message reçu : ' + msg);
         io.emit('chat message',msg);
     })
-})
-
-app.listen(5050, ()=>{
-    console.log('Server running on port 5050');
 });
-  
-  
-  // io.on('connection', (socket) => {
-    // socket.broadcast.emit('hi');
-  // });
+
+app.listen(PORT, ()=>{
+    console.log(`Server running on port ${PORT}`);
+});
+
+
 
 module.exports = app;
 
