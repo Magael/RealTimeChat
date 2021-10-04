@@ -25,6 +25,11 @@ router.get('chat', (req, res, next) => {
     res.redirect('/');
 });
 
+//Get chat page 
+router.get('/chat',(req,res) => {
+    res.render('chat.ejs') 
+})
+
 // Post login data
 router.post('/login', (req, res, next) => {
 
@@ -73,5 +78,7 @@ router.get('/logout',(req,res,next)=>{
         });
     }
 });
+
+
 
 module.exports = router;

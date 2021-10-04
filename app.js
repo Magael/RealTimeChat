@@ -9,6 +9,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+
 // used by body-parser
 app.use(express.urlencoded({extended : false}));
 
@@ -45,23 +46,31 @@ app.use((req, res, next)=>{
 app.use((err,req, res, next)=>{
     res.status(err.status || 500);
     res.send(err.message);
-})
-
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    socket.broadcast.emit(msg);
-    io.emit('chat message', msg);
-    console.log('message: ' + msg.text);
-  });
 });
 
 
-// io.on('connection', (socket) => {
-  // socket.broadcast.emit('hi');
-// });
-
 
 //setting server
+
+/*io.on('connection', (socket) => {
+    socket.on('chat message', (msg) => {
+      socket.broadcast.emit(msg);
+      io.emit('chat message', msg);
+      console.log('message: ' + msg.text);
+    });
+  });*/
+
+  io.on('connection',function(socket){
+    console.log('a user is connected');
+    socket.on('disconnect',function(){
+        console.log('a user is disconnected')
+    })
+    socket.on('chat message',function(msg){
+        console.log('message reçu : ' + msg);
+        io.emit('chat message',msg);
+    })
+});
+
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
 });
