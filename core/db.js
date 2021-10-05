@@ -4,9 +4,20 @@ const mongoclient = require('mongodb').MongoClient;
 const assert = require('assert');
 
 
-db.connect('mongodb+srv://RealTimeChat:Magael2215@cluster0.o54xm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology:true});
+require("dotenv").config();
 
+db.connect(process.env.DATABASE, {
+    useUnifiedTopology:true,
+    useNewUrlParser:true,
+});
 
+db.connection.on('error',(err)=>{
+    console.log("Mongoose connection ERROR: " + err.message);
+});
+
+db.connection.once("open",()=>{
+    console.log("MongoDB connected!");
+});
 
 
 
