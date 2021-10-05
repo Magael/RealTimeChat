@@ -1,7 +1,8 @@
 const express = require('express');
 const user = require('../core/user');
 const router = express.Router();
-
+const userController = require('../core/userController');
+const { catchErrors } = require('../handlers/errorHandlers');
 
 
 //call index
@@ -31,54 +32,20 @@ router.get('/chat',(req,res) => {
     res.render('chat.ejs',{username: 'steve'}) 
 })
 
-// Post login data
-router.post('/login', (req, res, next) => {
+// Post login  and register data
+router.post('/login', catchErrors(userController.login));
+router.post('/register', catchErrors(userController.register));
 
-    user.login(req.body.username, req.body.password, (result) => {
-        if (result) {
 
-            req.session.user = result;
-            req.session.opp = 1;
-
-            res.redirect('/chat');
-        } else {
-            res.send('Username/Password incorrect!');
-        }
-    });
-
-});
-
-//Post register data
-router.post('/register', (req, res, next) => {
-    let userInput = {
-        email: req.body.email,
-        username: req.body.username,
-        password: req.body.password,
-    };
-    
-    user.create(userInput, (lastId) => {
-        if (lastId) {
-
-            user.find(lastId.insertId, (result) => {
-                req.session.user = result;
-                req.session.opp = 0;
-                res.redirect('/');
-            });
-
-        } else {
-            console.log('Error creating a new user...');
-        }
-    });
-});
 
 // logout page
-router.get('/logout',(req,res,next)=>{
-    if(req.session.user){
-        req.session.destroy(()=>{
+router.post('/logout',(req,res,next)=>{
+    // if(req.session.user){
+        // req.session.destroy(()=>{
             res.redirect('/');
-        });
-    }
-});
+        // });
+    // }
+ });
 
 
 
