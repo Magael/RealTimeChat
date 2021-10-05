@@ -1,23 +1,13 @@
 const util = require('util');
-const mysql = require('mysql');
-//const { connect } = require('../app');
+const db = require('mongoose');
+const mongoclient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-const db = mysql.createConnection({
-    host:'127.0.0.1',
-    user:'root',
-    password:'',
-    database:'chat'
-});
+db.connect('mongodb+srv://RealTimeChat:Magael2215@cluster0.o54xm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology:true});
 
-db.connect((err,connection)=>{
-    if (err)
-        console.error('something went wrong...'+ err);
-   /* if(connection)
-        connection.release();
-    return;*/
-});
 
-db.query = util.promisify(db.query);
+
+//db.query = util.promisify(db.query);
 
 module.exports = db;
 
