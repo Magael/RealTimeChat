@@ -24,18 +24,19 @@ exports.register = async (req,res)=>{
 };
 
 exports.login = async (req,res)=>{
-    const { email, password } = req.body;
-    const user = await user.findOne({
-        email,
-        password: sha256(password + process.env.SALT),
+    const { username } = req.body;
+    
+    let user = await userSchema.findOne({username}).then((data)=>{
+        req.session.user = data
     });
+    console.log(req.session)
 
-    if(!user) throw "Email and password did not match.";
+    //if(!user) throw "Username and password did not match.";
 
-    const token = jwt.sign({id: user.id}, process.env.SECRET);
+    //const token = jwt.sign({id: user.id}, process.env.SECRET);
 
-    res.json({
-        message: 'User logged in successfully!',
-        token,
-    });
+    
+    res.redirect("/chat");
+    token;
+    
 };

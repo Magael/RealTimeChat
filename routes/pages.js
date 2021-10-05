@@ -2,7 +2,7 @@ const express = require('express');
 const user = require('../core/user');
 const router = express.Router();
 const userController = require('../core/userController');
-const { catchErrors } = require('../handlers/errorHandlers');
+const { catchErrors } = require('../errorHandlers/errorHandlers');
 
 
 //call index
@@ -28,8 +28,7 @@ router.get('/', (req, res, next) => {
 
 //Get chat page 
 router.get('/chat',(req,res) => {
-
-    res.render('chat.ejs',{username: 'steve'}) 
+    res.render('chat.ejs',{username: req.session.user.username}) 
 })
 
 // Post login  and register data
@@ -40,11 +39,11 @@ router.post('/register', catchErrors(userController.register));
 
 // logout page
 router.post('/logout',(req,res,next)=>{
-    // if(req.session.user){
-        // req.session.destroy(()=>{
+     if(req.session.user){
+        req.session.destroy(()=>{
             res.redirect('/');
-        // });
-    // }
+        });
+    }
  });
 
 
