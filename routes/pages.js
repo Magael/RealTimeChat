@@ -8,25 +8,26 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
     let user = req.session.user;
     if (user) {
-        res.redirect('chat');
+        res.redirect('/');
         return;
     }
     res.render('index');
 });
 
 //Get chatpage
-router.get('chat', (req, res, next) => {
+router.get('/', (req, res, next) => {
     let user = req.session.user;
 
     if (user) {
-        res.render('chat', { opp: req.session.opp, username: user.username });
+        res.render('/', { opp: req.session.opp, username: user.username });
         return;
     }
-    res.redirect('/');
+    res.redirect('index');
 });
 
 //Get chat page 
 router.get('/chat',(req,res) => {
+
     res.render('chat.ejs',{username: 'steve'}) 
 })
 
@@ -39,7 +40,7 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
 
-            res.redirect('chat');
+            res.redirect('/chat');
         } else {
             res.send('Username/Password incorrect!');
         }
