@@ -27,7 +27,8 @@ router.get('/', (req, res, next) => {
 
 //Get chat page 
 router.get('/chat',(req,res) => {
-    res.render('chat.ejs', {username: user.username}); 
+
+    res.render('chat.ejs',{username: 'steve'}) 
 })
 
 // Post login data

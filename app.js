@@ -4,10 +4,17 @@ const path = require('path');
 const pageRouter = require('./routes/pages');
 const app = express();
 const PORT = 5050 || process.env.PORT;
-const http = require('http');
+/*const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server);*/ 
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const passport = require('passport');
+
+//const initializePassport = require('./public/passport-config');
+//initializePassport(passport)
+
 
 
 // used by body-parser
@@ -52,15 +59,15 @@ app.use((err,req, res, next)=>{
 
 //setting server
 
-/*io.on('connection', (socket) => {
+io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
       socket.broadcast.emit(msg);
       io.emit('chat message', msg);
       console.log('message: ' + msg.text);
     });
-  });*/
+  });
 
-  io.on('connection',function(socket){
+  /*io.on('connection',function(socket){
     console.log('a user is connected');
     socket.on('disconnect',function(){
         console.log('a user is disconnected')
@@ -69,9 +76,9 @@ app.use((err,req, res, next)=>{
         console.log('message reçu : ' + msg);
         io.emit('chat message',msg);
     })
-});
+});*/
 
-app.listen(PORT, ()=>{
+http.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
 });
 
