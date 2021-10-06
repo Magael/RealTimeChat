@@ -1,8 +1,14 @@
 # RealTimeChat
 
-## Project done during BECODE learning process
+## Group project done during BECODE learning process
 
-link
+https://realtimechatkeller.herokuapp.com/
+
+## Team
+
+* [Allain Roos] (https://github.com/alain17-web)
+* [Elsa Magalhães] (https://github.com/Magael)
+* [Rica Joost] (https://github.com/ricaneu)
 
 
 ### The mission
