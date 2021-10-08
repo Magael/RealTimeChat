@@ -1,3 +1,4 @@
+
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -11,9 +12,13 @@ const io = new Server(server);*/
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const passport = require('passport');
+const flash = require('express-flash')
 
-//const initializePassport = require('./public/passport-config');
-//initializePassport(passport)
+/*const initializePassport = require('./public/passport-config');
+initializePassport(passport,
+    username =>  users.find(user => user.username === username),
+    id => users.find(user => user.id === id)
+);*/
 
 
 
@@ -29,6 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//app.use(flash())
+
 //session
 app.use(session({
     secret:'RealTimeChat',
@@ -38,6 +45,15 @@ app.use(session({
         maxAge: 60*1000*30
     }
 }));
+
+/*app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))*/
+
+/*app.use(passport.initialize())
+app.use(passport.session())*/
 
 //routers
 app.use('/', pageRouter);

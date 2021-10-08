@@ -109,7 +109,7 @@
     <!--<script src="chat.js"></script>-->
     
     <script>
-        const socket = io("");
+        const socket = io();
 
         const send = function (){
             const text = document.getElementById('m').value;
@@ -128,7 +128,7 @@
             li.style.borderRadius = "30px";
             li.innerText = msg;
             document.getElementById('messages').appendChild(li);
-            li.insertAdjacentText('afterend',username  + '   ' + currentDate );
+            li.insertAdjacentText('afterend',name  + '   ' + currentDate );
         }
         socket.on('chat message',receive);  
     </script>

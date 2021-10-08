@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const user = require('../core/user');
 const router = express.Router();
 const userController = require('../core/userController');
@@ -28,6 +29,25 @@ router.get('/', (req, res, next) => {
 
 //Get chat page 
 router.get('/chat',(req,res) => {
+/*    res.render('chat.ejs',{username: 'jane'}) 
+})
+
+// Post login data
+router.post('/login', (req, res, next) => {
+
+
+    user.login(req.body.username, req.body.password, (result) => {
+        if (result) {
+
+            req.session.user = result;
+            req.session.opp = 1;
+
+            res.redirect('chat');
+        } else {
+            res.send('Username/Password incorrect!');
+        }
+    });
+*/
     res.render('chat.ejs',{username: req.session.user.username}) 
 })
 
@@ -37,14 +57,23 @@ router.post('/register', catchErrors(userController.register));
 
 
 
+
 // logout page
 router.post('/logout',(req,res,next)=>{
+
+    //if(req.session.user){
+        //req.session.destroy(()=>{
+ //           res.redirect('/');
+        //});
+    //}
+});
      if(req.session.user){
         req.session.destroy(()=>{
             res.redirect('/');
         });
     }
  });
+
 
 
 
