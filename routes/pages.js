@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
 
 //Get chat page 
 router.get('/chat',(req,res) => {
-/*    res.render('chat.ejs',{username: 'jane'}) 
+   res.render('chat.ejs',{username: req.session.user.username}) 
 })
 
 // Post login data
@@ -47,7 +47,7 @@ router.post('/login', (req, res, next) => {
             res.send('Username/Password incorrect!');
         }
     });
-*/
+
     res.render('chat.ejs',{username: req.session.user.username}) 
 })
 
