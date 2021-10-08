@@ -31,6 +31,10 @@ router.get('/chat',(req,res) => {
     res.render('chat.ejs',{username: req.session.user.username}) 
 })
 
+router.post('/chat',(req,res) => {
+    res.render('chat.ejs',{username: req.session.user.username}) 
+})
+
 // Post login  and register data
 router.post('/login', catchErrors(userController.login));
 router.post('/register', catchErrors(userController.register));
