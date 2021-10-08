@@ -14,13 +14,13 @@ exports.register = async (req,res)=>{
     const user = new userSchema({
         username,email,password: sha256(password + process.env.SALT),
     });
-    console.log(req.body)
-    req.session.user.username = req.body.username
+   // console.log(req.body)
+   // req.session.user.username = req.body.username
 
     await user.save()
 
    .then (()=>{
-       res.render("chat.ejs", {username: req.session.user.username});
+       res.render("chat.ejs", {username: req.body.username});
    });
     
 };
