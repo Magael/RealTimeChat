@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 });
 
 //Get chatpage
-/*router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     let user = req.session.user;
 
     if (user) {
@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
         return;
     }
     res.redirect('index');
-});*/
+});
 
 //Get chat page 
 router.get('/chat',(req,res) => {
