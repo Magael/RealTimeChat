@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
     let user = req.session.user;
 
     if (user) {
-        res.render('/chat', { opp: req.session.opp, username: user.username });
+        res.render('chat.ejs', { opp: req.session.opp, username: user.username });
         return;
     }
     res.redirect('/index');
