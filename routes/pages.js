@@ -24,7 +24,7 @@ router.get('/', (req, res, next) => {
         res.render('/chat', { opp: req.session.opp, username: user.username });
         return;
     }
-    res.redirect('index');
+    res.redirect('/index');
 });
 
 //Get chat page 
