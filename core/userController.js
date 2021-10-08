@@ -18,7 +18,7 @@ exports.register = async (req,res)=>{
     await user.save()
 
    .then (()=>{
-       res.redirect("/chat");
+       res.render("chat.ejs", {username: req.session.user.username});
    });
     
 };
