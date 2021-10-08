@@ -7,21 +7,21 @@ const { catchErrors } = require('../errorHandlers/errorHandlers');
 
 
 //call index
-router.get('/', (req, res, next) => {
+/*router.get('/', (req, res, next) => {
     let user = req.session.user;
     if (user) {
         res.redirect('/');
         return;
     }
     res.render('index');
-});
+});*/
 
 //Get chatpage
 router.get('/', (req, res, next) => {
     let user = req.session.user;
 
     if (user) {
-        res.render('/', { opp: req.session.opp, username: user.username });
+        res.render('/chat', { opp: req.session.opp, username: user.username });
         return;
     }
     res.redirect('index');
