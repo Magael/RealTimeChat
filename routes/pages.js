@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
 });
 
 //Get chatpage
-router.get('/', (req, res, next) => {
+/*router.get('/', (req, res, next) => {
     let user = req.session.user;
 
     if (user) {
@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
         return;
     }
     res.redirect('index');
-});
+});*/
 
 //Get chat page 
 router.get('/chat',(req,res) => {
@@ -33,7 +33,7 @@ router.get('/chat',(req,res) => {
 })
 
 // Post login data
-router.post('/login', (req, res, next) => {
+/*router.post('/login', (req, res, next) => {
 
 
     user.login(req.body.username, req.body.password, (result) => {
@@ -49,7 +49,7 @@ router.post('/login', (req, res, next) => {
     });
 
     res.render('chat.ejs',{username: req.session.user.username}) 
-})
+})*/
 
 // Post login  and register data
 router.post('/login', catchErrors(userController.login));
