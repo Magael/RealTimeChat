@@ -1,24 +1,25 @@
 const util = require('util');
-const mysql = require('mysql');
-//const { connect } = require('../app');
+const db = require('mongoose');
+const mongoclient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-const db = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'root',
-    database:'chat',
-    port: 8889
+
+require("dotenv").config();
+
+db.connect(process.env.DATABASE, {
+    useUnifiedTopology:true,
+    useNewUrlParser:true,
 });
 
-db.connect((err,connection)=>{
-    if (err)
-        console.error('something went wrong...'+ err);
-   /* if(connection)
-        connection.release();
-    return;*/
+db.connection.on('error',(err)=>{
+    console.log("Mongoose connection ERROR: " + err.message);
 });
 
-db.query = util.promisify(db.query);
+db.connection.once("open",()=>{
+    console.log("MongoDB connected!");
+});
+
+
 
 module.exports = db;
 
